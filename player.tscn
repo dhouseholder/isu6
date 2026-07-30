@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cwk1bioiq1c3c"]
+
+[ext_resource type="Texture2D" uid="uid://cxa5c05l0iwq8" path="res://gfx/shrimp.png" id="1_4flbx"]
+
+[node name="Player" type="CharacterBody2D" unique_id=2099001623]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=456751974]
+texture = ExtResource("1_4flbx")

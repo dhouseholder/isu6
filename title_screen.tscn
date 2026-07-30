@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bcjhnhrkybnqx"]
+
+[ext_resource type="Script" uid="uid://wetcf2og7vby" path="res://title_screen.gd" id="1_ak2if"]
+[ext_resource type="Texture2D" uid="uid://bgplo57crnjdw" path="res://gfx/ISU-6-Tech-Demo-aka-SPACE-SHRI-7-30-2026.jpg" id="2_ig5kc"]
+[ext_resource type="Script" uid="uid://csqnseyv3naex" path="res://v_box_container.gd" id="3_05l2w"]
+[ext_resource type="AudioStream" uid="uid://cvl1rjqfnhjp5" path="res://audiocopper-dark-571483.mp3" id="3_ig5kc"]
+
+[sub_resource type="Gradient" id="Gradient_05l2w"]
+offsets = PackedFloat32Array(0, 0.554717, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.86880386, 0, 0.25557333, 1, 1, 0.41568628, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hafda"]
+seed = 11
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tpml5"]
+width = 1440
+height = 900
+noise = SubResource("FastNoiseLite_hafda")
+color_ramp = SubResource("Gradient_05l2w")
+seamless = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05l2w"]
+bg_color = Color(0.41504496, 0.6890069, 3.85046e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hafda"]
+bg_color = Color(0.10338052, 0.3894914, 1.4439226e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpml5"]
+bg_color = Color(0.7764706, 0, 0.11764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqemp"]
+bg_color = Color(1, 0, 0.15686275, 1)
+
+[node name="TitleScreen" type="Control" unique_id=159607676]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ak2if")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=616367579]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ig5kc")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=755566513]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_tpml5")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1042092310]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_05l2w")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1512653716]
+layout_mode = 2
+text = "Choose your fate:"
+
+[node name="QuitButton" type="MenuButton" parent="VBoxContainer" unique_id=912771090]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_05l2w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hafda")
+text = "QUIT"
+
+[node name="StartButton" type="MenuButton" parent="VBoxContainer" unique_id=1271309957]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_tpml5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jqemp")
+text = "START"
+icon_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=894515383]
+stream = ExtResource("3_ig5kc")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
