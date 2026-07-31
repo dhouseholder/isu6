@@ -9,9 +9,9 @@ func _ready() -> void:
 			
 			var tween = create_tween()
 			# Delay the start of this specific button's fade
-			tween.tween_property(button, "modulate:a", 1.0, 6.5)\
+			tween.tween_property(button, "modulate:a", 1.0, 1.5)\
 				.set_delay(delay)\
 				.set_trans(Tween.TRANS_SINE)
 				
 			# Increase delay for the next button in line
-			delay += 5.0 
+			delay += 1.0 
